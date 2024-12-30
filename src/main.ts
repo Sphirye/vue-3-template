@@ -12,9 +12,11 @@ import App from './App.vue'
 
 // Composables
 import { createApp } from 'vue'
+import AxiosConfig from './config/AxiosConfig'
 
 const app = createApp(App)
 
+AxiosConfig.init(app)
 registerPlugins(app)
 
 app.mount('#app')
