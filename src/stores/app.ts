@@ -1,6 +1,7 @@
 // Utilities
 import Session from '@/models/Session'
 import router from '@/router'
+import ConstantTool from '@/services/tools/ConstantTool'
 import { defineStore } from 'pinia'
 
 export const useAppStore = defineStore('app', {
@@ -12,17 +13,17 @@ export const useAppStore = defineStore('app', {
 
   actions: {
     setSession(session: Session) {
-      localStorage.removeItem(Session.KEY)
+      localStorage.removeItem(ConstantTool.SESSION_KEY)
       this.session = session
       this.saveSession()
     },
 
     saveSession() {
-      localStorage.setItem(Session.KEY, JSON.stringify(this.session))
+      localStorage.setItem(ConstantTool.SESSION_KEY, JSON.stringify(this.session))
     },
 
     loadSession() {
-      let cachedSession = localStorage.getItem(Session.KEY)
+      let cachedSession = localStorage.getItem(ConstantTool.SESSION_KEY)
       if (cachedSession != null) {
         this.session = JSON.parse(cachedSession)
       }
